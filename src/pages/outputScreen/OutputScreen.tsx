@@ -8,6 +8,7 @@ import styles from './styles';
 import Button from '../../components/button/Button';
 import { doc, getDoc } from 'firebase/firestore';
 import { db } from '../../../firebaseConfig';
+import * as Clipboard from 'expo-clipboard';
 
 type OutputScreenRouteProp = RouteProp<RootStackParamList, 'output'>;
 
@@ -28,10 +29,14 @@ export default function OutputScreen() {
     getData();
   }, [docId]);
 
+  const copyToClipboard = async () => {
+    await Clipboard.setStringAsync(data?.text as string);
+  };
+
   return (
     <BackgroundGradient>
       <View style={{ flex: 1, gap: 5 }}>
-        <Title title='Your Design' closeEnabled onPress={()=> navigation.goBack()} />
+        <Title title='Your Design' closeEnabled onPress={() => navigation.goBack()} />
         <View style={styles.logoContainer}>
           <Image style={styles.logoImg} source={data?.imgUrl} />
         </View>
@@ -40,7 +45,7 @@ export default function OutputScreen() {
             <Text style={[styles.promptText, { fontWeight: "bold" }]}>
               Prompt
             </Text>
-            <Button type='copy' title='Copy' onPress={() => { console.log("copied..") }} />
+            <Button type='copy' title='Copy' onPress={copyToClipboard} />
           </View>
           <Text style={styles.promptText}>
             {data?.text}
