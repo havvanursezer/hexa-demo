@@ -15,9 +15,7 @@ const Title: React.FC<TitleProps> = ({ title, alignCenter, buttonTitle, onPress,
       }
       {
         closeEnabled &&
-        <Button onPress={() => onPress ? onPress() : null}>
-          <Cancel/>
-        </Button>
+        <Button type="cancel" onPress={() => onPress ? onPress() : null}/>
       }
     </View>
   );

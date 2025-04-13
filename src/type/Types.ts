@@ -24,6 +24,7 @@ export interface TitleProps {
 export interface ButtonProp {
   title?: string,
   size?: "primary" | "mini",
+  type?: "copy" | "cancel",
   imgUrl?: ImageProps,
   selected?: boolean,
   onPress: () => void
