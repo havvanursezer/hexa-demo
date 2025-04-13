@@ -14,16 +14,6 @@ const styles = StyleSheet.create({
         fontSize: 17,
         fontWeight: "bold"
     },
-    inputContainer: {
-        backgroundColor: Colors.inputBg,
-        height: 175,
-        borderRadius: 16,
-        padding: 20,
-        justifyContent:"space-between"
-    },
-    logoContainer: { 
-        width: Dimensions.get("screen").width 
-    }
 })
 
 export default styles
