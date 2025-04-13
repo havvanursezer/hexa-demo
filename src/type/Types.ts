@@ -24,14 +24,15 @@ export interface TitleProps {
 export interface ButtonProp {
   title?: string,
   size?: "primary" | "mini",
-  children?: ReactNode,
   imgUrl?: ImageProps,
   selected?: boolean,
   onPress: () => void
 }
 
-export interface CreateStatusProp {
-  status: "pending" | "fullfilled" | "rejected",
+export type StatusTypes = "pending" | "fullfilled" | "rejected"
+
+export interface StatusIndicatorProp {
+  status: StatusTypes,
   title: string,
   subtitle: string,
   imgUrl?: ImageProps,

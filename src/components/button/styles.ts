@@ -42,6 +42,11 @@ const styles = StyleSheet.create({
         alignItems:"center",
         justifyContent:"center"
     },
+    logoImg: {
+        width:"100%",
+        height:"100%", 
+        borderRadius: 14
+    }
 })
 
 export default styles

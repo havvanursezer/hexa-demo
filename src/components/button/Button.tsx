@@ -4,23 +4,25 @@ import styles from './styles'
 import { ButtonProp } from '../../type/Types';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Colors } from '../../theme/colors';
-import { Block } from '../icons/Icons';
+import { Block, Stars } from '../icons/Icons';
 
-const Button: React.FC<ButtonProp> = ({ title, size, children, imgUrl, selected, onPress }) => {
+const Button: React.FC<ButtonProp> = ({ title, size, imgUrl, selected, onPress }) => {
     return (
         <TouchableOpacity onPress={() => onPress()} style={size === "primary" ? styles.primaryButton : { alignItems: "center", gap: 5 }}>
             {
                 size === "mini" &&
                 <View style={[styles.miniButton, { borderWidth: selected ? 2 : 0, borderColor: Colors.white }]}>
                     {
-                        imgUrl ? <Image source={imgUrl} style={styles.miniButton} />
+                        imgUrl ? <Image source={imgUrl} style={styles.logoImg} resizeMode='cover'/>
                             :
                             <Block />
                     }
                 </View>
             }
             <Text style={[size === "primary" ? styles.primaryText : size === "mini" && !selected ? styles.miniText : size === "mini" && selected ? styles.miniTextSelected : styles.textStyle]}>{title}</Text>
-            {children}
+            {
+                size === "primary" && <Stars/>
+            }
             {
                 size === "primary" &&
                 <LinearGradient

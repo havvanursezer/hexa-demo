@@ -1,13 +1,13 @@
-import { View, Text, TouchableOpacity, Image, ActivityIndicator } from 'react-native'
+import { View, Text, TouchableOpacity, Image } from 'react-native'
 import React from 'react'
-import styles from './styles'
-import { ButtonProp, CreateStatusProp } from '../../type/Types';
+import { StatusIndicatorProp } from '../../type/Types';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Colors } from '../../theme/colors';
-import { Block, CircleAlert } from '../icons/Icons';
+import { CircleAlert } from '../icons/Icons';
 import CustomSpinner from '../spinner/Spinner';
+import styles from './styles';
 
-const CreateStatusBar: React.FC<CreateStatusProp> = ({ title, status, subtitle, imgUrl, onPress }) => {
+const StatusIndicator: React.FC<StatusIndicatorProp> = ({ title, status, subtitle, imgUrl, onPress }) => {
     return (
         <TouchableOpacity disabled={onPress ? false : true} onPress={() => onPress ? onPress() : null} style={styles.container}>
             <View style={[styles.imgWrapper, { backgroundColor: status === "rejected" ? Colors.softRed : Colors.darkBg, }]}>
@@ -38,4 +38,4 @@ const CreateStatusBar: React.FC<CreateStatusProp> = ({ title, status, subtitle, 
     );
 };
 
-export default CreateStatusBar;
+export default StatusIndicator;

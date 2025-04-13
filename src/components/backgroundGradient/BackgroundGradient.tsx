@@ -7,7 +7,7 @@ import { BackgroundGradientProps } from '../../type/Types';
 const BackgroundGradient: React.FC<BackgroundGradientProps> = ({ children, style }) => {
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: "#09090B" }}>
-            <View style={{ flex: 1, zIndex: 111 }}>
+            <View style={{ flex: 1, zIndex: 111, paddingHorizontal:20 }}>
                 {children}
             </View>
             <BlurView
