@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
-import { View, Animated, StyleSheet } from 'react-native';
-import { Colors } from '../../theme/colors';
+import { View, Animated } from 'react-native';
+import styles from './styles';
 
 const CustomSpinner = () => {
   const rotateAnim = useRef(new Animated.Value(0)).current;
@@ -26,19 +26,5 @@ const CustomSpinner = () => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1, justifyContent: 'center', alignItems: 'center'
-  },
-  spinner: {
-    width: 30,
-    height: 30,
-    borderWidth: 1,
-    borderColor: Colors.white,
-    borderTopColor: Colors.dark,
-    borderRadius: 20,
-  }
-});
 
 export default CustomSpinner;
