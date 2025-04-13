@@ -5,11 +5,11 @@ import { InputScreenNavigationProp, LogoInterface, StatusTypes } from '../../typ
 import BackgroundGradient from '../../components/backgroundGradient/BackgroundGradient';
 import Title from '../../components/title/Title';
 import Button from '../../components/button/Button';
-import styles from '../../components/title/styles';
 import { Colors } from '../../theme/colors';
 import StatusIndicator from '../../components/statusIndicator/StatusIndicator';
 import { addDoc, collection } from 'firebase/firestore';
 import { db } from '../../../firebaseConfig';
+import styles from './styles';
 
 export default function InputScreen() {
   const navigation = useNavigation<InputScreenNavigationProp>();
@@ -65,9 +65,9 @@ export default function InputScreen() {
   }, [status]);
 
   const createFunc = () => {
-    setStatus("pending"),
-      setStatusTitle("Creating Your Design..."),
-      setStatusSubTitle("Ready in 2 minutes")
+    setStatus("pending");
+    setStatusTitle("Creating Your Design...");
+    setStatusSubTitle("Ready in 2 minutes");
   }
 
   const handleSubmit = async () => {
@@ -115,7 +115,7 @@ export default function InputScreen() {
               return (
                 <Button selected={item?.id === selectedLogo?.id} key={index} onPress={() => { setSelectedLogo(item) }} size='mini' title={item.title} imgUrl={item.imgUrl} />
               )
-            }}/>
+            }} />
         </View>
         <Button onPress={createFunc} title='Create' size={"primary"} />
       </Pressable>
