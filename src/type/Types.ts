@@ -5,7 +5,7 @@ import { ImageProps, ViewStyle } from 'react-native';
 
 export type RootStackParamList = {
   input: undefined;
-  output: undefined;
+  output: { docId: string };
 };
 
 export interface BackgroundGradientProps {
@@ -38,6 +38,18 @@ export interface StatusIndicatorProp {
   subtitle: string,
   imgUrl?: ImageProps,
   onPress?: () => void
+}
+
+export interface LogoInterface {
+  id: number,
+  title?: string,
+  imgUrl?: ImageProps
+}
+
+export interface OutputResponse {
+  selectedScheme: LogoInterface,
+  imgUrl: ImageProps,
+  text?: string,
 }
 
 export type InputScreenNavigationProp = NativeStackNavigationProp<RootStackParamList, 'input'>;

@@ -1,20 +1,39 @@
 import { View, Text, Image } from 'react-native'
-import React from 'react'
-import { useNavigation } from '@react-navigation/native'
-import { OutputScreenNavigationProp } from '../../type/Types';
+import React, { useEffect, useState } from 'react'
+import { RouteProp, useNavigation, useRoute } from '@react-navigation/native'
+import { OutputResponse, OutputScreenNavigationProp, RootStackParamList } from '../../type/Types';
 import BackgroundGradient from '../../components/backgroundGradient/BackgroundGradient';
 import Title from '../../components/title/Title';
 import styles from './styles';
 import Button from '../../components/button/Button';
+import { doc, getDoc } from 'firebase/firestore';
+import { db } from '../../../firebaseConfig';
+
+type OutputScreenRouteProp = RouteProp<RootStackParamList, 'output'>;
 
 export default function OutputScreen() {
   const navigation = useNavigation<OutputScreenNavigationProp>();
+  const route = useRoute<OutputScreenRouteProp>();
+  const { docId } = route.params;
+
+  const [data, setData] = useState<OutputResponse>();
+
+  useEffect(() => {
+    const getData = async () => {
+      const docSnap = await getDoc(doc(db, 'userInputs', docId));
+      if (docSnap.exists()) {
+        setData(docSnap.data() as OutputResponse);
+      }
+    };
+    getData();
+  }, [docId]);
+
   return (
     <BackgroundGradient>
       <View style={{ flex: 1, gap: 5 }}>
         <Title title='Your Design' closeEnabled onPress={()=> navigation.goBack()} />
         <View style={styles.logoContainer}>
-          <Image style={styles.logoImg} source={require("../../assets/logo.png")} />
+          <Image style={styles.logoImg} source={data?.imgUrl} />
         </View>
         <View style={styles.promptContainer}>
           <View style={styles.promptHeader}>
@@ -24,11 +43,11 @@ export default function OutputScreen() {
             <Button type='copy' title='Copy' onPress={() => { console.log("copied..") }} />
           </View>
           <Text style={styles.promptText}>
-            A professional logo for Harrison & Co. Law Firm, using balanced serif fonts
+            {data?.text}
           </Text>
           <View style={styles.tag}>
             <Text style={[styles.promptText, { fontSize: 12 }]}>
-              Monogram
+              {data?.selectedScheme?.title}
             </Text>
           </View>
         </View>
